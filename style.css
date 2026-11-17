@@ -1,0 +1,170 @@
+/* ---------- Reset & variables ---------- */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #faf7f2;
+  --text: #1a1a1a;
+  --muted: #5f5b55;
+  --accent: #1a1a1a;
+  --accent-text: #ffffff;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ---------- Navbar (tanpa background, teks saja) ---------- */
+.navbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px 48px;
+  background: none;
+  z-index: 10;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.nav-links a {
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: opacity 150ms var(--ease-out);
+}
+
+.nav-links a:hover {
+  opacity: 0.55;
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 120px 24px 80px;
+}
+
+.hero-title {
+  font-size: clamp(3rem, 9vw, 7.5rem);
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -0.045em;
+  margin-bottom: 28px;
+}
+
+.hero-subtitle {
+  max-width: 560px;
+  font-size: clamp(1rem, 1.6vw, 1.25rem);
+  line-height: 1.6;
+  color: var(--muted);
+  margin-bottom: 44px;
+}
+
+/* ---------- Button ---------- */
+.btn-primary {
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--accent-text);
+  background: var(--accent);
+  border: none;
+  border-radius: 999px;
+  padding: 16px 40px;
+  cursor: pointer;
+  transition: transform 150ms var(--ease-out), box-shadow 150ms var(--ease-out);
+}
+
+.btn-primary:hover {
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+}
+
+/* Scale 0.97 saat ditekan */
+.btn-primary:active {
+  transform: scale(0.97);
+}
+
+/* ---------- Entrance animation ---------- */
+/* Ease-out untuk entrance, stagger 30ms antar elemen */
+@keyframes enter {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-title,
+.hero-subtitle,
+.btn-primary {
+  animation: enter 500ms var(--ease-out) backwards;
+}
+
+.hero-subtitle { animation-delay: 30ms; }
+.btn-primary   { animation-delay: 60ms; }
+
+/* Hormati pengguna yang mematikan animasi */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* ---------- Page exit ---------- */
+/* Exit 400ms = 20% lebih singkat dari entrance 500ms */
+main {
+  transition: opacity 400ms ease-in, transform 400ms ease-in;
+}
+
+body.is-leaving main {
+  opacity: 0;
+  transform: translateY(-8px);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 600px) {
+  .navbar {
+    padding: 20px 24px;
+  }
+  .nav-links {
+    gap: 20px;
+  }
+}

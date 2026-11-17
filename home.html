@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Discover | Nestly.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <!-- auth.css dipakai ulang untuk style field, input, dan pesan error -->
+  <link rel="stylesheet" href="auth.css" />
+  <link rel="stylesheet" href="app.css" />
+</head>
+<body>
+
+  <div class="shell" id="shell">
+
+    <!-- Navbar: fixed di atas (HP) / sidebar kiri (laptop) -->
+    <aside class="sidebar" id="sidebar">
+      <a href="#discover" class="logo stagger" style="--i: 0">Nestly.</a>
+      <nav class="side-nav" aria-label="Main">
+        <a href="#discover" class="side-link stagger" style="--i: 1" data-view="discover">Discover</a>
+        <a href="#communities" class="side-link stagger" style="--i: 2" data-view="communities">Communities</a>
+        <a href="#events" class="side-link stagger" style="--i: 3" data-view="events">Events</a>
+        <a href="#discussions" class="side-link stagger" style="--i: 4" data-view="discussions">Discussions</a>
+        <a href="#profile" class="side-link stagger" style="--i: 5" data-view="profile">Profile</a>
+        <button type="button" class="side-link logout stagger" style="--i: 6" id="logout">Log out</button>
+      </nav>
+    </aside>
+
+    <main class="content">
+      <div class="content-inner">
+
+        <!-- ========== DISCOVER ========== -->
+        <section class="view" data-view="discover" data-title="Discover" hidden>
+          <header class="greet stagger" style="--i: 1">
+            <div>
+              <p class="eyebrow">Your community space</p>
+              <h1 class="greeting" id="greeting">Hello.</h1>
+            </div>
+            <div class="avatar" id="avatar" aria-hidden="true">N</div>
+          </header>
+
+          <div class="explore">
+            <p class="eyebrow stagger" style="--i: 2">Explore</p>
+            <h2 class="section-title stagger" style="--i: 3">Find your people.</h2>
+            <p class="section-sub stagger" style="--i: 4">Discover communities that match your interests.</p>
+
+            <button type="button" class="btn-primary stagger" style="--i: 5" id="add-btn">+ Add Community</button>
+
+            <input type="search" class="search stagger" style="--i: 6" id="search"
+                   placeholder="Search communities..." aria-label="Search communities" autocomplete="off" />
+
+            <div class="chips stagger" style="--i: 7" id="chips" role="group" aria-label="Filter by category"></div>
+
+            <div class="grid" id="grid" aria-live="polite"></div>
+          </div>
+        </section>
+
+        <!-- ========== COMMUNITIES ========== -->
+        <section class="view" data-view="communities" data-title="Communities" hidden>
+          <div class="page-head">
+            <p class="eyebrow stagger" style="--i: 1">Communities</p>
+            <h2 class="section-title stagger" style="--i: 2">Your communities.</h2>
+            <p class="section-sub stagger" style="--i: 3">Communities you've created show up here.</p>
+          </div>
+          <div class="grid" id="my-grid" aria-live="polite"></div>
+        </section>
+
+        <!-- ========== EVENTS ========== -->
+        <section class="view" data-view="events" data-title="Events" hidden>
+          <div class="page-head">
+            <p class="eyebrow stagger" style="--i: 1">Events</p>
+            <h2 class="section-title stagger" style="--i: 2">Meet in person.</h2>
+            <p class="section-sub stagger" style="--i: 3">Meetups from your communities will live here.</p>
+          </div>
+          <div class="empty-card stagger" style="--i: 4">
+            <strong>Nothing here yet.</strong>
+            Events are coming soon.
+          </div>
+        </section>
+
+        <!-- ========== DISCUSSIONS ========== -->
+        <section class="view" data-view="discussions" data-title="Discussions" hidden>
+          <div class="page-head">
+            <p class="eyebrow stagger" style="--i: 1">Discussions</p>
+            <h2 class="section-title stagger" style="--i: 2">Talk it through.</h2>
+            <p class="section-sub stagger" style="--i: 3">Conversations from your communities will live here.</p>
+          </div>
+          <div class="empty-card stagger" style="--i: 4">
+            <strong>Nothing here yet.</strong>
+            Discussions are coming soon.
+          </div>
+        </section>
+
+        <!-- ========== PROFILE ========== -->
+        <section class="view" data-view="profile" data-title="Profile" hidden>
+          <div class="page-head">
+            <p class="eyebrow stagger" style="--i: 1">Profile</p>
+            <h2 class="section-title stagger" style="--i: 2">Your profile.</h2>
+            <p class="section-sub stagger" style="--i: 3">Update how your name appears on Nestly.</p>
+          </div>
+
+          <div class="avatar avatar-lg stagger" style="--i: 4" id="p-avatar" aria-hidden="true">N</div>
+
+          <form id="profile-form" class="form profile-form stagger" style="--i: 5" novalidate>
+            <div class="field">
+              <label for="p-name">Full name</label>
+              <input id="p-name" type="text" autocomplete="name" placeholder="Your name" />
+              <div class="error"><span></span></div>
+            </div>
+
+            <div class="field">
+              <label for="p-email">Email</label>
+              <input id="p-email" type="email" readonly />
+            </div>
+
+            <button type="submit" class="btn-primary btn-block" id="save-btn">
+              <span class="btn-label">Save changes</span>
+            </button>
+          </form>
+        </section>
+
+      </div>
+
+      <footer class="site-footer">
+        <span>&copy; <span id="year">2026</span> Nestly.</span>
+        <span>Find your people.</span>
+      </footer>
+    </main>
+
+  </div>
+
+  <!-- Modal: Add Community -->
+  <div class="modal" id="modal" aria-hidden="true">
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <h2 id="modal-title">Add a community</h2>
+      <p class="modal-sub">Start a space for people who share what you love.</p>
+
+      <form id="add-form" class="form" novalidate>
+        <div class="field">
+          <label for="c-name">Name</label>
+          <input id="c-name" type="text" maxlength="80" placeholder="e.g. Evening Basketball Semarang" autocomplete="off" />
+          <div class="error"><span></span></div>
+        </div>
+
+        <div class="field">
+          <label for="c-category">Category</label>
+          <select id="c-category"></select>
+        </div>
+
+        <div class="field">
+          <label for="c-desc">Description</label>
+          <textarea id="c-desc" maxlength="280" placeholder="What is this community about?"></textarea>
+          <div class="error"><span></span></div>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="btn-ghost" data-close>Cancel</button>
+          <button type="submit" class="btn-primary" id="add-submit">
+            <span class="btn-label">Add Community</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script src="home.js"></script>
+</body>
+</html>

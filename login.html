@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Log In | Nestly.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="auth.css" />
+</head>
+<body>
+
+  <header class="navbar">
+    <a href="index.html" class="logo" data-transition>Nestly.</a>
+    <nav class="nav-links">
+      <a href="login.html" aria-current="page">Log In</a>
+      <a href="signup.html" data-transition>Sign Up</a>
+    </nav>
+  </header>
+
+  <main class="auth">
+    <div class="auth-card">
+      <h1 class="auth-title stagger" style="--i: 0">Welcome back.</h1>
+      <p class="auth-subtitle stagger" style="--i: 1">Log in to pick up where you left off.</p>
+
+      <form id="auth-form" class="form" data-mode="login" novalidate>
+        <div class="field stagger" style="--i: 2">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" />
+          <div class="error"><span></span></div>
+        </div>
+
+        <div class="field stagger" style="--i: 3">
+          <label for="password">Password</label>
+          <div class="password-wrap">
+            <input id="password" name="password" type="password" autocomplete="current-password" placeholder="Enter your password" />
+            <button type="button" class="toggle" aria-label="Show password" aria-pressed="false">
+              <svg class="icon-show" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z" />
+                <circle cx="12" cy="12" r="3" />
+              </svg>
+              <svg class="icon-hide" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M17.94 17.94A10.94 10.94 0 0 1 12 19c-6.5 0-10-7-10-7a18.5 18.5 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 5c6.5 0 10 7 10 7a18.5 18.5 0 0 1-2.16 3.19" />
+                <path d="M14.12 14.12a3 3 0 1 1-4.24-4.24" />
+                <path d="M1 1l22 22" />
+              </svg>
+            </button>
+          </div>
+          <div class="error"><span></span></div>
+        </div>
+
+        <button type="submit" class="btn-primary btn-block stagger" style="--i: 4">
+          <span class="btn-label">Log In</span>
+        </button>
+      </form>
+
+      <p class="auth-switch stagger" style="--i: 5">
+        Don't have an account? <a href="signup.html" data-transition>Sign Up</a>
+      </p>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script src="auth.js"></script>
+</body>
+</html>

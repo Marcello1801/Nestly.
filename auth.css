@@ -1,0 +1,216 @@
+/* ---------- Layout ---------- */
+.auth {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 120px 24px 64px;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 400px;
+}
+
+.auth-title {
+  font-size: clamp(2.25rem, 6vw, 3.25rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  margin-bottom: 12px;
+}
+
+.auth-subtitle {
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: 32px;
+}
+
+/* ---------- Entrance: ease-out, stagger 30ms per baris ---------- */
+.auth .stagger {
+  animation: enter 500ms var(--ease-out) backwards;
+  animation-delay: calc(var(--i, 0) * 30ms);
+}
+
+/* ---------- Form ---------- */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.field label {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.field input {
+  width: 100%;
+  height: 52px;
+  padding: 0 16px;
+  font-family: inherit;
+  font-size: 1rem;
+  color: var(--text);
+  background: #ffffff;
+  border: 1.5px solid rgba(0, 0, 0, 0.12);
+  border-radius: 14px;
+  outline: none;
+  transition: border-color 150ms var(--ease-out), box-shadow 150ms var(--ease-out);
+}
+
+.field input::placeholder {
+  color: rgba(26, 26, 26, 0.4);
+}
+
+.field input:focus {
+  border-color: var(--text);
+  box-shadow: 0 0 0 4px rgba(26, 26, 26, 0.08);
+}
+
+.field.has-error input {
+  border-color: #c0392b;
+}
+
+.field.has-error input:focus {
+  box-shadow: 0 0 0 4px rgba(192, 57, 43, 0.12);
+}
+
+/* ---------- Error: reveal dengan mask tinggi, exit 20% lebih singkat ---------- */
+.error {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition: grid-template-rows 160ms var(--ease-out), opacity 160ms var(--ease-out);
+}
+
+.error > span {
+  overflow: hidden;
+  font-size: 0.8125rem;
+  color: #c0392b;
+}
+
+.field.has-error .error {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  transition-duration: 200ms;
+}
+
+/* ---------- Password toggle: crossfade ikon + blur ---------- */
+.password-wrap {
+  position: relative;
+}
+
+.password-wrap input {
+  padding-right: 56px;
+}
+
+.toggle {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  color: var(--muted);
+  background: none;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: color 150ms var(--ease-out), transform 150ms var(--ease-out);
+}
+
+.toggle:hover {
+  color: var(--text);
+}
+
+.toggle:active {
+  transform: scale(0.97);
+}
+
+.toggle svg {
+  grid-area: 1 / 1;
+  width: 20px;
+  height: 20px;
+  transition: opacity 200ms var(--ease-out), filter 200ms var(--ease-out), transform 200ms var(--ease-out);
+}
+
+.toggle .icon-hide,
+.toggle.is-on .icon-show {
+  opacity: 0;
+  filter: blur(4px);
+  transform: scale(0.7);
+}
+
+.toggle.is-on .icon-hide {
+  opacity: 1;
+  filter: blur(0);
+  transform: scale(1);
+}
+
+/* ---------- Tombol submit ---------- */
+.btn-block {
+  width: 100%;
+  margin-top: 6px;
+  transition:
+    transform 150ms var(--ease-out),
+    box-shadow 150ms var(--ease-out),
+    background-color 200ms var(--ease-out),
+    opacity 200ms var(--ease-out);
+}
+
+.btn-block:disabled {
+  opacity: 0.75;
+  cursor: progress;
+}
+
+.btn-block.is-success {
+  background-color: #1f7a4d;
+}
+
+/* ---------- Teks bawah ---------- */
+.terms-note {
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--muted);
+  text-align: center;
+}
+
+.terms-note a,
+.auth-switch a {
+  color: var(--text);
+  font-weight: 600;
+  text-underline-offset: 3px;
+}
+
+.terms-note a:hover,
+.auth-switch a:hover {
+  text-decoration: underline;
+}
+
+.auth-switch {
+  margin-top: 28px;
+  text-align: center;
+  font-size: 0.9375rem;
+  color: var(--muted);
+}
+
+/* Penanda halaman aktif di navbar */
+.nav-links a[aria-current="page"] {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
+}
+
+@media (max-width: 600px) {
+  .auth {
+    align-items: flex-start;
+    padding-top: 110px;
+  }
+}
